@@ -7,6 +7,8 @@ from argparse import Namespace
 
 
 if __name__ == '__main__':
+    
+    driver = GapFollower()
 
     with open('config_example_map.yaml') as file:
         conf_dict = yaml.load(file, Loader=yaml.FullLoader)
@@ -17,13 +19,12 @@ if __name__ == '__main__':
     obs, step_reward, done, info = env.reset(np.array([[conf.sx, conf.sy,
         conf.stheta]]))
     env.render()
-    planner = GapFollower()
 
     laptime = 0.0
     start = time.time()
     
     while not done:
-        speed, steer = planner.lidar_callback(obs['scans'][0])
+        speed, steer = driver.process_lidar(obs['scans'][0])
         obs, step_reward, done, info = env.step(np.array([[steer/2, speed]]))
         laptime += step_reward
         env.render(mode='human')

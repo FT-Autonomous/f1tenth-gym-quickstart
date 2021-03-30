@@ -61,7 +61,7 @@ class GapFollower:
         """
         return (range_index - (range_len/2)) * self.degrees_per_elem
 
-    def lidar_callback(self, ranges):
+    def process_lidar(self, ranges):
         """ Process each LiDAR scan as per the Follow Gap algorithm & publish an AckermannDriveStamped Message
         """
         proc_ranges = self.preprocess_lidar(ranges)
