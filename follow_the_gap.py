@@ -19,7 +19,7 @@ class GapFollower:
             1.Setting each value to the mean over some window
             2.Rejecting high values (eg. > 3m)
         """
-        self.degrees_per_elem = (2*np.pi) / len(ranges)
+        self.degrees_per_elem = (360) / len(ranges)
 	# we won't use the LiDAR data from directly behind us
         proc_ranges = np.array(ranges[135:-135])
         # sets each value to the mean over a given window
