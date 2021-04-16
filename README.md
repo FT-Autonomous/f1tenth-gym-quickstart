@@ -18,7 +18,7 @@ This is a fork of the [F1TENTH Gym Repository](https://github.com/f1tenth/f1tent
 Clone this repository. If you don't want to use git, you may alternatively [download](https://github.com/davidnugent2425/f1tenth_gym/archive/main.zip) this repository as a zip file (you will then have to extract and rename the folder).
 
 ```bash
-$ git clone https://github.com/davidnugent2425/f1tenth_gym.git
+$ git clone https://github.com/FT-Autonomous/f1tenth-gym-quickstart.git
 ```
 
 Go into the repository and install the required packages. If you don't want to use the command line to navigate to the repository, you may open the folder in Visual Studio Code or another code editor of your choice. Note: [pip](https://pypi.org/project/pip/) is a package manager for Python packages.
@@ -32,7 +32,7 @@ Then to make sure it's working, go into the src directory and run the simulator
 
 ```bash
 $ cd src
-$ py simulator.py
+$ python simulator.py
 ```
 
 ## Making your own Driver
@@ -86,7 +86,7 @@ driver = SimpleDriver()
 Now if you run the simulator.py file again, it uses our SimpleDriver
 
 ```bash
-$ py simulator.py
+$ python simulator.py
 ```
 
 To see some more complex processing, take a look at the GapFollower Driver in [follow_the_gap.py](./src/follow_the_gap.py) which implements the [Follow The Gap Method](https://www.youtube.com/watch?v=7VLYP-z9hTw&ab_channel=Real-TimemLABUPenn)! Notice that it still has a ```process_lidar``` function which takes in LiDAR data and returns a speed and steering angle. That's all we'll ever need.
