@@ -12,14 +12,14 @@ class GapFollower:
     
     def __init__(self):
         # used when calculating the angles of the LiDAR data
-        self.degrees_per_elem = None
+        self.radians_per_elem = None
     
     def preprocess_lidar(self, ranges):
         """ Preprocess the LiDAR scan array. Expert implementation includes:
             1.Setting each value to the mean over some window
             2.Rejecting high values (eg. > 3m)
         """
-        self.degrees_per_elem = (2*np.pi) / len(ranges)
+        self.radians_per_elem = (2*np.pi) / len(ranges)
 	# we won't use the LiDAR data from directly behind us
         proc_ranges = np.array(ranges[135:-135])
         # sets each value to the mean over a given window
@@ -59,7 +59,7 @@ class GapFollower:
     def get_angle(self, range_index, range_len):
         """ Get the angle of a particular element in the LiDAR data and transform it into an appropriate steering angle
         """
-        lidar_angle = (range_index - (range_len/2)) * self.degrees_per_elem
+        lidar_angle = (range_index - (range_len/2)) * self.radians_per_elem
         steering_angle = lidar_angle / 2
         return steering_angle
 
