@@ -107,6 +107,9 @@ drivers = [GapFollower(), SimpleDriver()]
 ```
 
 ## Known issues (from original repo)
+
+- If you run the `pip install...` command above and then later change your file structure in some way, you may get errors with `gym` such as `module 'gym' has no attribute 'make'`. The solution to this is to re-run the command `pip install --user -e gym/`.
+
 - On MacOS Big Sur and above, when rendering is turned on, you might encounter the error:
 ```
 ImportError: Can't find framework /System/Library/Frameworks/OpenGL.framework.
