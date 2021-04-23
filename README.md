@@ -65,12 +65,12 @@ Let's look at the [simulator.py](./src/simulator.py) file. The section shown bel
 # import your drivers here
 from follow_the_gap import GapFollower
 
-# choose your driver here
-driver = GapFollower()
+# choose your drivers here (1-4)
+drivers = [GapFollower()]
 ...
 ```
 
-As shown in the comments above, we can import Drivers and then choose which one we want to use. Let's import our SimpleDriver and choose it
+As shown in the comments above, we can import Drivers and then choose which ones we want to use. Let's import our SimpleDriver and choose it
 
 ```python
 ...
@@ -78,8 +78,8 @@ As shown in the comments above, we can import Drivers and then choose which one 
 from follow_the_gap import GapFollower
 from starting_point import SimpleDriver
 
-# choose your driver here
-driver = SimpleDriver()
+# choose your drivers here (1-4)
+drivers = [SimpleDriver()]
 ...
 ```
 
@@ -90,6 +90,21 @@ $ python simulator.py
 ```
 
 To see some more complex processing, take a look at the GapFollower Driver in [follow_the_gap.py](./src/follow_the_gap.py) which implements the [Follow The Gap Method](https://www.youtube.com/watch?v=7VLYP-z9hTw&ab_channel=Real-TimemLABUPenn)! Notice that it still has a ```process_lidar``` function which takes in LiDAR data and returns a speed and steering angle. That's all we'll ever need.
+
+### Multi-Agent Racing
+
+To race multiple Drivers against eachother, simply choose multiple Drivers! You may choose up to 4 drivers, but in practice the simulator will usually run very slowly if you choose more than 2. You may race the same Driver against itself by choosing it twice. If you try racing GapFollower against itself, you will find that it is not good at multi-agent racing! 
+
+Here's how we would race GapFollower against SimpleDriver:
+
+```python
+# import your drivers here
+from follow_the_gap import GapFollower
+from starting_point import SimpleDriver
+
+# choose your drivers here (1-4)
+drivers = [GapFollower(), SimpleDriver()]
+```
 
 ## Known issues (from original repo)
 - On MacOS Big Sur and above, when rendering is turned on, you might encounter the error:
