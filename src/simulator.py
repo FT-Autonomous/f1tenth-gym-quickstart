@@ -12,15 +12,17 @@ from starting_point import SimpleDriver, AnotherDriver
 # choose your drivers here (1-4)
 drivers = [GapFollower()]
 
-if __name__ == '__main__':
-    
-    with open('maps/config_example_map.yaml') as file:
-        conf_dict = yaml.load(file, Loader=yaml.FullLoader)
-    conf = Namespace(**conf_dict)
+# choose your racetrack here (TRACK_1, TRACK_2, TRACK_3)
+RACETRACK = 'TRACK_1'
 
-    env = gym.make('f110_gym:f110-v0', map=conf.map_path,
-            map_ext=conf.map_ext, num_agents=len(drivers))# initial reset
-    poses = np.array([[-1.25 + (i * 0.75), 0., np.radians(90)] for i in range(len(drivers))]) # specify starting positions of each agent
+if __name__ == '__main__':
+    with open('maps/{}.yaml'.format(RACETRACK)) as map_conf_file:
+        map_conf = yaml.load(map_conf_file, Loader=yaml.FullLoader)
+    origin = map_conf['origin']
+    env = gym.make('f110_gym:f110-v0', map="maps/{}".format(RACETRACK),
+            map_ext=".png", num_agents=len(drivers))
+    # specify starting positions of each agent
+    poses = np.array([[-1.25 + (i * 0.75), 0., np.radians(90)] for i in range(len(drivers))])
     obs, step_reward, done, info = env.reset(poses=poses)
     env.render()
 
