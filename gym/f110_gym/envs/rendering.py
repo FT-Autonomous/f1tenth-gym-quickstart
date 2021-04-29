@@ -47,6 +47,10 @@ ZOOM_OUT_FACTOR = 1/ZOOM_IN_FACTOR
 CAR_LENGTH = 0.58
 CAR_WIDTH = 0.31
 
+# rendering colors
+BACKGROUND_COLOR = (0., 0., 0., 0.)
+DRAWINGS_COLOR = [255, 0, 0, 255]
+
 class EnvRenderer(pyglet.window.Window):
     """
     A window class inherited from pyglet.window.Window, handles the camera/projection interaction, resizing window, and rendering the environment
@@ -69,7 +73,7 @@ class EnvRenderer(pyglet.window.Window):
         super().__init__(width, height, config=conf, resizable=True, vsync=False, *args, **kwargs)
 
         # gl init
-        glClearColor(9/255, 32/255, 87/255, 1.)
+        glClearColor(*BACKGROUND_COLOR)
 
         # initialize camera values
         self.left = -width/2
@@ -103,7 +107,7 @@ class EnvRenderer(pyglet.window.Window):
                 anchor_y='center',
                 # width=0.01,
                 # height=0.01,
-                color=(255, 255, 255, 255),
+                color=(*DRAWINGS_COLOR,),
                 batch=self.batch)
 
         self.fps_display = pyglet.window.FPSDisplay(self)
@@ -150,7 +154,7 @@ class EnvRenderer(pyglet.window.Window):
         map_mask_flat = map_mask.flatten()
         map_points = 50. * map_coords[:, map_mask_flat].T
         for i in range(map_points.shape[0]):
-            self.batch.add(1, GL_POINTS, None, ('v3f/stream', [map_points[i, 0], map_points[i, 1], map_points[i, 2]]), ('c3B/stream', [183, 193, 222]))
+            self.batch.add(1, GL_POINTS, None, ('v3f/stream', [map_points[i, 0], map_points[i, 1], map_points[i, 2]]), ('c3B/stream', DRAWINGS_COLOR[:3]))
         self.map_points = map_points
 
     def on_resize(self, width, height):
