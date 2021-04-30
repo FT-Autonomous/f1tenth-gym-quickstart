@@ -425,7 +425,9 @@ class Simulator(object):
         # get vertices of all agents
         all_vertices = np.empty((self.num_agents, 4, 2))
         for i in range(self.num_agents):
-            all_vertices[i, :, :] = get_vertices(np.append(self.agents[i].state[0:2],self.agents[i].state[4]), self.params['length'], self.params['width'])
+            car_verts = get_vertices(np.append(self.agents[i].state[0:2],self.agents[i].state[4]), self.params['length'], self.params['width'])
+            corners = car_verts[[0, 1, -2, -1]]
+            all_vertices[i, :, :] = corners
         self.collisions, self.collision_idx = collision_multiple(all_vertices)
 
 

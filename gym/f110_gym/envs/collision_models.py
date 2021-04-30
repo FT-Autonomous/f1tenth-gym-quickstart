@@ -252,11 +252,30 @@ def get_vertices(pose, length, width):
     rr = H.dot(np.asarray([[-length/2],[-width/2],[0.], [1.]])).flatten()
     fl = H.dot(np.asarray([[length/2],[width/2],[0.], [1.]])).flatten()
     fr = H.dot(np.asarray([[length/2],[-width/2],[0.], [1.]])).flatten()
+    brr1 = H.dot(np.asarray([[-length/4],[-width/2],[0.], [1.]])).flatten()
+    brr2 = H.dot(np.asarray([[-length/4],[-width*(3/8)],[0.], [1.]])).flatten()
+    bfr1 = H.dot(np.asarray([[length/4],[-width/2],[0.], [1.]])).flatten()
+    bfr2 = H.dot(np.asarray([[length/4],[-width*(3/8)],[0.], [1.]])).flatten()
+    brl1 = H.dot(np.asarray([[-length/4],[width/2],[0.], [1.]])).flatten()
+    brl2 = H.dot(np.asarray([[-length/4],[width*(3/8)],[0.], [1.]])).flatten()
+    bfl1 = H.dot(np.asarray([[length/4],[width/2],[0.], [1.]])).flatten()
+    bfl2 = H.dot(np.asarray([[length/4],[width*(3/8)],[0.], [1.]])).flatten()
     rl = rl/rl[3]
     rr = rr/rr[3]
     fl = fl/fl[3]
     fr = fr/fr[3]
-    vertices = np.asarray([[rl[0], rl[1]], [rr[0], rr[1]], [fr[0], fr[1]], [fl[0], fl[1]]])
+    brr1 = brr1/brr1[3]
+    brr2 = brr2/brr2[3]
+    bfr1 = bfr1/bfr1[3]
+    bfr2 = bfr2/bfr2[3]
+    brl1 = brl1/brl1[3]
+    brl2 = brl2/brl2[3]
+    bfl1 = bfl1/bfl1[3]
+    bfl2 = bfl2/bfl2[3]
+    vertices = np.asarray([[rl[0], rl[1]], [rr[0], rr[1]], [brr1[0], brr1[1]], [brl1[0], brl1[1]],
+                           [brl2[0], brl2[1]], [brr2[0], brr2[1]], [bfr2[0], bfr2[1]], [bfl2[0], bfl2[1]],
+                           [bfl1[0], bfl1[1]], [bfr1[0], bfr1[1]], [fr[0], fr[1]], [fl[0], fl[1]],
+                          ])
     return vertices
 
 

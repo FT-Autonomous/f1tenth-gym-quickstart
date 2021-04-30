@@ -320,16 +320,14 @@ class EnvRenderer(pyglet.window.Window):
         if self.poses is None:
             self.cars = []
             for i in range(num_agents):
+                vertices_np = get_vertices(np.array([0., 0., 0.]), CAR_LENGTH, CAR_WIDTH)
+                num_vertices = len(vertices_np)
+                vertices = list(vertices_np.flatten())
                 if i == self.ego_idx:
-                    vertices_np = get_vertices(np.array([0., 0., 0.]), CAR_LENGTH, CAR_WIDTH)
-                    vertices = list(vertices_np.flatten())
-                    car = self.batch.add(4, GL_QUADS, None, ('v2f', vertices), ('c3B', [172, 97, 185, 172, 97, 185, 172, 97, 185, 172, 97, 185]))
-                    self.cars.append(car)
+                    car = self.batch.add(num_vertices, GL_QUADS, None, ('v2f', vertices), ('c3B', [172, 97, 185]*num_vertices))
                 else:
-                    vertices_np = get_vertices(np.array([0., 0., 0.]), CAR_LENGTH, CAR_WIDTH)
-                    vertices = list(vertices_np.flatten())
-                    car = self.batch.add(4, GL_QUADS, None, ('v2f', vertices), ('c3B', [99, 52, 94, 99, 52, 94, 99, 52, 94, 99, 52, 94]))
-                    self.cars.append(car)
+                    car = self.batch.add(num_vertices, GL_QUADS, None, ('v2f', vertices), ('c3B', [99, 52, 94]*num_vertices))
+                self.cars.append(car)
 
         poses = np.stack((poses_x, poses_y, poses_theta)).T
         for j in range(poses.shape[0]):

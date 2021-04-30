@@ -7,7 +7,7 @@ import concurrent.futures
 
 # import your drivers here
 from follow_the_gap import GapFollower
-from starting_point import SimpleDriver, AnotherDriver
+from starting_point import SimpleDriver
 
 # choose your drivers here (1-4)
 drivers = [GapFollower()]
