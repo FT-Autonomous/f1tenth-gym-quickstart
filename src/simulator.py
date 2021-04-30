@@ -12,7 +12,7 @@ from starting_point import SimpleDriver, AnotherDriver
 # choose your drivers here (1-4)
 drivers = [GapFollower()]
 
-# choose your racetrack here (TRACK_1, TRACK_2, TRACK_3)
+# choose your racetrack here (TRACK_1, TRACK_2, TRACK_3, OBSTACLES)
 RACETRACK = 'TRACK_1'
 
 if __name__ == '__main__':
