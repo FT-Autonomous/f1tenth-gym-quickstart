@@ -125,7 +125,7 @@ from follow_the_gap import GapFollower
 from starting_point import SimpleDriver
 
 # choose your drivers here (1-4)
-drivers = [GapFollower(), SimpleDriver()]
+drivers = [GapFollower()]
 
 # choose your racetrack here (TRACK_1, TRACK_2, TRACK_3, OBSTACLES)
 RACETRACK = 'OBSTACLES'
