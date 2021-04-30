@@ -67,6 +67,9 @@ from follow_the_gap import GapFollower
 
 # choose your drivers here (1-4)
 drivers = [GapFollower()]
+
+# choose your racetrack here (TRACK_1, TRACK_2, TRACK_3, OBSTACLES)
+RACETRACK = 'TRACK_1'
 ...
 ```
 
@@ -80,6 +83,9 @@ from starting_point import SimpleDriver
 
 # choose your drivers here (1-4)
 drivers = [SimpleDriver()]
+
+# choose your racetrack here (TRACK_1, TRACK_2, TRACK_3, OBSTACLES)
+RACETRACK = 'TRACK_1'
 ...
 ```
 
@@ -104,6 +110,25 @@ from starting_point import SimpleDriver
 
 # choose your drivers here (1-4)
 drivers = [GapFollower(), SimpleDriver()]
+
+# choose your racetrack here (TRACK_1, TRACK_2, TRACK_3, OBSTACLES)
+RACETRACK = 'TRACK_1'
+```
+
+### Changing Map
+
+There are 3 clear racetracks and 1 obstacles racetrack provided. To switch between them simply change the name of the selected `RACETRACK`
+
+```python
+# import your drivers here
+from follow_the_gap import GapFollower
+from starting_point import SimpleDriver
+
+# choose your drivers here (1-4)
+drivers = [GapFollower(), SimpleDriver()]
+
+# choose your racetrack here (TRACK_1, TRACK_2, TRACK_3, OBSTACLES)
+RACETRACK = 'OBSTACLES'
 ```
 
 ## Known issues (from original repo)
