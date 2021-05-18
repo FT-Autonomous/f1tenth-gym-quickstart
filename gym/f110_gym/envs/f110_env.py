@@ -223,7 +223,7 @@ class F110Env(gym.Env, utils.EzPickle):
             if self.toggle_list[i] < 4:
                 self.lap_times[i] = self.current_time
         
-        done = (self.collisions[self.ego_idx]) or np.all(self.toggle_list >= 4)
+        done = np.all(self.toggle_list >= 4)
         
         return done, self.toggle_list >= 4
 
