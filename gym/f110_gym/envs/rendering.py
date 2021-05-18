@@ -259,7 +259,7 @@ class EnvRenderer(pyglet.window.Window):
 
         super().on_close()
         super().close()
-        raise Exception('Rendering window was closed.')
+        raise SystemExit('Rendering window was closed.')
 
     def on_draw(self):
         """
