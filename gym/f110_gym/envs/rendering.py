@@ -128,8 +128,9 @@ class EnvRenderer(pyglet.window.Window):
         with open(map_path + '.yaml', 'r') as yaml_stream:
             try:
                 map_metadata = yaml.safe_load(yaml_stream)
+                scale = map_metadata['resolution'] / map_metadata['default_resolution']
                 map_resolution = map_metadata['resolution']
-                origin = map_metadata['origin']
+                origin = np.array(map_metadata['origin']) * scale
                 origin_x = origin[0]
                 origin_y = origin[1]
             except yaml.YAMLError as ex:

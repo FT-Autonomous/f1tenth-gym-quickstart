@@ -382,7 +382,8 @@ class ScanSimulator2D(object):
             try:
                 map_metadata = yaml.safe_load(yaml_stream)
                 self.map_resolution = map_metadata['resolution']
-                self.origin = map_metadata['origin']
+                scale = map_metadata['resolution'] / map_metadata['default_resolution']
+                self.origin = np.array(map_metadata['origin']) * scale
             except yaml.YAMLError as ex:
                 print(ex)
 
